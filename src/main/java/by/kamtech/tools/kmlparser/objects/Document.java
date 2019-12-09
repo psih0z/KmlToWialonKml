@@ -1,7 +1,5 @@
 package by.kamtech.tools.kmlparser.objects;
 
-import by.kamtech.tools.kmlparser.objects.placemark.Folder;
-import by.kamtech.tools.kmlparser.objects.schema.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

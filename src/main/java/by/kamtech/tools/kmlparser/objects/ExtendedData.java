@@ -1,4 +1,4 @@
-package by.kamtech.tools.kmlparser.objects.placemark.extdata;
+package by.kamtech.tools.kmlparser.objects;
 
 import lombok.Data;
 

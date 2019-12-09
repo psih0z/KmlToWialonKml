@@ -1,4 +1,4 @@
-package by.kamtech.tools.kmlparser.objects.placemark.multigeometry;
+package by.kamtech.tools.kmlparser.objects;
 
 import javax.xml.bind.annotation.XmlElement;
 

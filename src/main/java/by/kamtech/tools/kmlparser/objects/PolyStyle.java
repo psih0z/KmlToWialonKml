@@ -1,4 +1,4 @@
-package by.kamtech.tools.kmlparser.objects.placemark.multigeometry;
+package by.kamtech.tools.kmlparser.objects;
 
 import lombok.Data;
 
@@ -8,9 +8,12 @@ import javax.xml.bind.annotation.XmlElement;
 
 @Data
 @XmlAccessorType(XmlAccessType.FIELD)
-public class MultiGeometry {
+public class PolyStyle {
 
-    @XmlElement(name = "Polygon")
-    private Polygon polygon;
+    @XmlElement(name = "color")
+    private String color;
+
+    @XmlElement(name = "fill")
+    private int fill;
 
 }

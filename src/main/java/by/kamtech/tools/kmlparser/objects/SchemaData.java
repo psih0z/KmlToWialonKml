@@ -1,9 +1,5 @@
-package by.kamtech.tools.kmlparser.objects.placemark.extdata;
+package by.kamtech.tools.kmlparser.objects;
 
-import lombok.Data;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;

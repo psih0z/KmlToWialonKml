@@ -1,12 +1,6 @@
 package by.kamtech.tools.kmlparser;
 
-import by.kamtech.tools.kmlparser.objects.DocumentOut;
-import by.kamtech.tools.kmlparser.objects.Kml;
-import by.kamtech.tools.kmlparser.objects.KmlOut;
-import by.kamtech.tools.kmlparser.objects.placemark.Placemark;
-import by.kamtech.tools.kmlparser.objects.placemark.PlacemarkOut;
-import by.kamtech.tools.kmlparser.objects.placemark.extdata.SimpleData;
-import by.kamtech.tools.kmlparser.objects.placemark.style.Style;
+import by.kamtech.tools.kmlparser.objects.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -31,10 +25,16 @@ public class Main {
 
         JAXBContext jaxbContext = JAXBContext.newInstance(Kml.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+
         kml = (Kml) unmarshaller.unmarshal(file);
 
         KmlOut kmlOut = new KmlOut();
         kmlOut.setDocument(new DocumentOut());
+
+        /*String fileName = kml.getDocument().getFolder().getName();
+        if (fileName != null) {
+            targetFile = fileName + ".xml";
+        }*/
 
         List<Placemark> placemarks = kml.getDocument().getFolder().getPlacemarks();
         for (Placemark placemark : placemarks) {
@@ -44,17 +44,28 @@ public class Main {
             Style style = placemark.getStyle();
 
             List<SimpleData> simpleDataList = placemark.getExtendedData().getSchemaData().getSimpleDataList();
+            StringBuilder description = new StringBuilder();
             float doza = 0;
             float ph = 0;
             float gumus = 0;
             for (SimpleData data : simpleDataList) {
-                if ("gumus".equals(data.getName().toLowerCase())) gumus = Float.parseFloat(data.getValue().replace(',','.'));
-                if ("ph".equals(data.getName().toLowerCase())) ph = Float.parseFloat(data.getValue().replace(',','.'));
-                if ("doza".equals(data.getName().toLowerCase())) doza = Float.parseFloat(data.getValue().replace(',','.'));
+                String name = data.getName().toLowerCase();
+                String value = data.getValue();
+
+                if ("gumus".equals(name)) gumus = Float.parseFloat(value.replace(',','.'));
+                if ("ph".equals(name)) ph = Float.parseFloat(value.replace(',','.'));
+                if ("doza".equals(name)) doza = Float.parseFloat(value.replace(',','.'));
+                if (name.contains("num_agrh")) placemarkOut.setName(value);
+
+                description.append(name).append(": ").append(value).append('\n');
             }
 
+            Description desc = new Description();
+            desc.setDescription(description.toString());
+            placemarkOut.setDescription(desc);
+
             if (doza > 0) {
-                style.getPolyStyle().setColor(getColor(doza, ph, gumus));
+                style.getPolyStyle().setColor(getColorNew(doza, ph, gumus));
                 style.getPolyStyle().setFill(1);
             }
 
@@ -83,6 +94,8 @@ public class Main {
         String violet = "99800080";
         String color = "FF000000";
 
+
+
         if (gumus > 0) {
             if (ph < 4.5) color = pink;
             if (ph >= 4.51 && ph <=5.0) color = purple;
@@ -101,6 +114,33 @@ public class Main {
             if (ph > 6.5) color = violet;
         }
 
+        return color;
+    }
+
+    private static String getColorNew(float doza, float ph, float gumus) {
+        String red = "990000ff"; // группа 1
+        String purple = "99990066"; // группа 2
+        String orange = "990066ff"; // группа 3
+        String yellow = "9900ffff"; // группа 4
+        String green = "99339900";  // группа 5
+        String color = "FF000000";
+
+
+        if (doza==0) {
+            color = green;
+        } else if (gumus > 0) {
+            if (ph < 4.5) color = red;
+            if (ph >= 4.51 && ph <=5.0) color = purple;
+            if (ph >= 5.01 && ph <=5.50) color = orange;
+            if (ph >= 5.51 && ph <=6.0) color = yellow;
+            if (ph >= 6.01) color = green;
+        } else if (gumus == 0) {
+            if (ph < 4) color = red;
+            if (ph >= 4.01 && ph <=4.50) color = purple;
+            if (ph >= 4.51 && ph <=5.0) color = orange;
+            if (ph >= 5.01 && ph <=5.50) color = yellow;
+            if (ph >= 5.51 ) color = green;
+        }
         return color;
     }
 

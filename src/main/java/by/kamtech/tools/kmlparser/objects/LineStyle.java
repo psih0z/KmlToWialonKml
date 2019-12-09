@@ -1,4 +1,4 @@
-package by.kamtech.tools.kmlparser.objects.placemark.style;
+package by.kamtech.tools.kmlparser.objects;
 
 import javax.xml.bind.annotation.XmlElement;
 

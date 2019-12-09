@@ -1,7 +1,5 @@
-package by.kamtech.tools.kmlparser.objects.schema;
+package by.kamtech.tools.kmlparser.objects;
 
-import com.sun.istack.internal.NotNull;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

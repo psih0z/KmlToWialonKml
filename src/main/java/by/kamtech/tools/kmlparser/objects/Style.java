@@ -1,4 +1,4 @@
-package by.kamtech.tools.kmlparser.objects.placemark.style;
+package by.kamtech.tools.kmlparser.objects;
 
 import lombok.Data;
 
@@ -10,8 +10,8 @@ import javax.xml.bind.annotation.XmlElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Style {
 
-    @XmlElement(name = "LineStyle")
-    private LineStyle lineStyle;
+//    @XmlElement(name = "LineStyle")
+//    private LineStyle lineStyle;
 
     @XmlElement(name = "PolyStyle")
     private PolyStyle polyStyle;

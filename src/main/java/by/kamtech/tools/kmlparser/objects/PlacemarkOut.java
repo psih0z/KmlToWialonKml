@@ -1,7 +1,5 @@
-package by.kamtech.tools.kmlparser.objects.placemark;
+package by.kamtech.tools.kmlparser.objects;
 
-import by.kamtech.tools.kmlparser.objects.placemark.multigeometry.Polygon;
-import by.kamtech.tools.kmlparser.objects.placemark.style.Style;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -16,12 +14,15 @@ public class PlacemarkOut {
     private String name;
 
     @XmlElement(name = "description")
-    private String description;
+    private Description description;
 
     @XmlElement(name = "Style")
     private Style style;
 
     @XmlElement(name = "Polygon")
     private Polygon polygon;
+
+    @XmlElement(name = "Point")
+    private Point point;
 
 }

@@ -1,4 +1,4 @@
-package by.kamtech.tools.kmlparser.objects.placemark;
+package by.kamtech.tools.kmlparser.objects;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -11,8 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 public class Folder {
 
-    @XmlElement(name = "name")
     private String name;
+
+    @XmlElement(name = "name")
+    public void setName(String name) { this.name = name; }
+
+    public String getName() { return this.name; }
 
     List<Placemark> placemarks;
 

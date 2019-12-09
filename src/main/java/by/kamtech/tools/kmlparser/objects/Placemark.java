@@ -1,8 +1,5 @@
-package by.kamtech.tools.kmlparser.objects.placemark;
+package by.kamtech.tools.kmlparser.objects;
 
-import by.kamtech.tools.kmlparser.objects.placemark.extdata.ExtendedData;
-import by.kamtech.tools.kmlparser.objects.placemark.multigeometry.MultiGeometry;
-import by.kamtech.tools.kmlparser.objects.placemark.style.Style;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlAccessType;

@@ -1,4 +1,4 @@
-package by.kamtech.tools.kmlparser.objects.schema;
+package by.kamtech.tools.kmlparser.objects;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
